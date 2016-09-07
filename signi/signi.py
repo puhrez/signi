@@ -16,11 +16,15 @@ def get_word_page(word, url='http://dle.rae.es/srv/search?w='):
         return html.fromstring(res.text)
 
 
-def get_n_defs(page, n=2):
-    def_elements = page.xpath("//p[@class='j']")[:n]
+def get_n_defs(page, n=1):
+    uses = page.xpath('//article')
+    uses_definitons = [
+        x.xpath(".//p[starts-with(@class,'j')]")[:n]
+        for x in uses]
     defs = '; '.join(
-        ' '.join(x.text or '' for x in e.getchildren())
-        for e in def_elements if e is not None)
+        use.text_content()
+        for e in uses_definitons
+        for use in e)
     return defs
 
 
