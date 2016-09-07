@@ -24,4 +24,4 @@ Options:
 
 ## TODO
 
-* get pip installable executable working
+* ~~get pip installable executable working~~
