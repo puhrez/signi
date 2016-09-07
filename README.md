@@ -8,9 +8,9 @@ A simple DRAE definitions tool.
 ## Usage
 
 ```
-λ pip install -r requirements.txt
+λ pip install signi
 
-λ python3 signi.py --help
+λ signi --help
 Usage: signi.py [options]
 
 Options:
@@ -21,3 +21,7 @@ Options:
   -d OUTPUT_FILE, --dest=OUTPUT_FILE
                         the file to write to
 ```
+
+## TODO
+
+* get pip installable executable working

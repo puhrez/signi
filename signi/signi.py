@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+    Singi
+    ~~~~~
+    A simple DRAE definitons tool
+"""
+
 import requests
 from lxml import html
 from optparse import OptionParser
@@ -44,7 +51,8 @@ def get_defs_from_file(path):
         words = (x.strip() for x in file_.readlines())
     return get_defs_from_words(words)
 
-if __name__ == '__main__':
+
+def main():
     parser = OptionParser(
         version='%prog 1.0',
         description='A simple DRAE definitions tool')
@@ -58,7 +66,10 @@ if __name__ == '__main__':
 
     if options.input_file and options.word:
         parser.error('options --word and --file are mutually exclusive')
+    elif not (options.input_file or options.word):
+        parser.error('must specify either an input file or a word to define')
 
+    output = None
     if options.input_file is not None:
         output = get_defs_from_file(options.input_file)
     elif options.word is not None:
@@ -69,3 +80,6 @@ if __name__ == '__main__':
             f.write(output)
     else:
         print(output)
+
+if __name__ == '__main__':
+    main()
